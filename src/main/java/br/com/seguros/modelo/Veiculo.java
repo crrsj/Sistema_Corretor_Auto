@@ -1,5 +1,7 @@
 package br.com.seguros.modelo;
 
+import br.com.seguros.dto.Status;
+import br.com.seguros.dto.VeiculoDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -26,4 +28,12 @@ public class Veiculo {
     @ManyToOne
     @JoinColumn(name = "Id_cliente")
     private Cliente clientes;
+
+    public Veiculo(VeiculoDTO veiculoDTO) {
+        this.id = veiculoDTO.id();
+        this.marca = veiculoDTO.marca();
+        this.modelo = veiculoDTO.modelo();
+        this.anoModelo = veiculoDTO.anoModelo();
+        this.placa = veiculoDTO.placa();
+    }
 }

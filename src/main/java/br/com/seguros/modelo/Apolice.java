@@ -1,5 +1,7 @@
 package br.com.seguros.modelo;
 
+import br.com.seguros.dto.ApoliceDTO;
+import br.com.seguros.dto.Status;
 import br.com.seguros.enums.Vidros;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,9 +28,24 @@ public class Apolice {
     private CoberturaMenores coberturaMenores;
     private BigDecimal franquia;
     private BigDecimal valorSeguro;
+    private Status ststus;
     @ManyToOne
     @JoinColumn(name = "id_apolice")
-    private Cliente cliente;
+    private Cliente clientes;
     @OneToOne
-    private Veiculo veiculo;
+    private Veiculo veiculos;
+
+    public Apolice(ApoliceDTO apoliceDTO) {
+        this.id = apoliceDTO.id();
+        this.numero = apoliceDTO.numero();
+        this.danosMateriais = apoliceDTO.danosMateriais();
+        this.danosCorporais = apoliceDTO.danosCorporais();
+        this.vidros = apoliceDTO.vidros();
+        this.coberturaMenores = apoliceDTO.coberturaMenores();
+        this.franquia = apoliceDTO.franquia();
+        this.valorSeguro = apoliceDTO.valorSeguro();
+        this.ststus = apoliceDTO.status();
+        this.clientes = apoliceDTO.cliente();
+        this.veiculos = apoliceDTO.veiculo();
+    }
 }
